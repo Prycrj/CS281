@@ -569,12 +569,17 @@ INSERT INTO invoice_line_items VALUES
 (113,1,510,'224.00','Health Insurance'),
 (114,1,553,'127.75','Freight');
 
--- create a user and grant privileges to that user
-GRANT SELECT, INSERT, DELETE, UPDATE
-ON ap.*
-TO ap_tester@localhost
+-- drop user if it already exists
+DROP USER IF EXISTS ap_tester@localhost;
+
+-- create user
+CREATE USER ap_tester@localhost 
 IDENTIFIED BY 'sesame';
 
+-- grant privileges to that user
+GRANT SELECT, INSERT, DELETE, UPDATE
+ON ap.*
+TO ap_tester@localhost;
 
 -- ********************************************
 -- CREATE THE EX DATABASE
